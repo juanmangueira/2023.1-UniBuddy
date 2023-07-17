@@ -65,7 +65,7 @@ REQUEST
 GET
 
 ```url
-http://localhost:3000/usuarios/whatsapp/?telefone={numero}
+https://nice-puce-lovebird-cape.cyclic.app/usuarios/whatsapp/?telefone={numero}
 ```
 
 RESPONSE
