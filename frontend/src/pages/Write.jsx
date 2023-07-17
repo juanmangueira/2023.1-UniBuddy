@@ -14,6 +14,8 @@ const CadastrarCarona = () => {
     data: "",
     horario: "",
     descricao: "",
+    carro: "",
+    cor: "",
   });
 
   const [showModal, setShowModal] = useState(false);
@@ -29,7 +31,7 @@ const CadastrarCarona = () => {
     };
     try {
       const response = await axios.post(
-        "https://nice-puce-lovebird-cape.cyclic.app/caronas/cadastrar",
+        "http://localhost:3000/caronas/cadastrar",
         carona,
         config
       );
@@ -172,6 +174,21 @@ const CadastrarCarona = () => {
           value={carona.descricao}
           onChange={handleInputChange}
         />
+        <input 
+          type="text"
+          placeholder="Modelo do Carro"
+          name="carro"
+          value={carona.carro}
+          onChange={handleInputChange}
+        />
+        <input
+          type="text"
+          placeholder="Cor do Carro"
+          name="cor"
+          value={carona.cor}
+          onChange={handleInputChange}
+        />
+
         <button type="submit">Criar Carona</button>
       </form>
       

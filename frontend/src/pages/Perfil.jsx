@@ -23,7 +23,7 @@ const Perfil = () => {
   useEffect(() => {
     const fetchUsuario = async () => {
       try {
-        const response = await axios.get("https://nice-puce-lovebird-cape.cyclic.app/usuarios/perfil", config);
+        const response = await axios.get("http://localhost:3000/usuarios/perfil", config);
         const data = await response.data;
         setUsuario(data.usuario);
       } catch (error) {
@@ -34,7 +34,7 @@ const Perfil = () => {
     const fetchCarona = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get("https://nice-puce-lovebird-cape.cyclic.app/usuarios/caronas", config);
+        const response = await axios.get("http://localhost:3000/usuarios/caronas", config);
         const data = await response.data;
         setCaronas(data);
       } catch (error) {
@@ -60,7 +60,7 @@ const Perfil = () => {
 
   const handleSalvarEdicao = async () => {
     try {
-      const response = await axios.put("https://nice-puce-lovebird-cape.cyclic.app/usuarios/editar", perfilEditado, config);
+      const response = await axios.put("http://localhost:3000/usuarios/editar", perfilEditado, config);
       const data = response.data;
       console.log("data editar> ", data);
       setIsEditing(false);
@@ -72,7 +72,7 @@ const Perfil = () => {
 
   const handleDeletarPerfil = async () => {
     try {
-      const response = await axios.delete("https://nice-puce-lovebird-cape.cyclic.app/usuarios/deletar", config);
+      const response = await axios.delete("http://localhost:3000/usuarios/deletar", config);
       const data = response.data;
       console.log("data deletar> ", data);
       setIsEditing(false);
@@ -96,7 +96,7 @@ const Perfil = () => {
 
   const handleSalvarEdicaoCarona = async () => {
     try {
-      const response = await axios.put(`https://nice-puce-lovebird-cape.cyclic.app/caronas/editar/${caronaEditada.id}`, caronaEditada, config);
+      const response = await axios.put(`http://localhost:3000/caronas/editar/${caronaEditada.id}`, caronaEditada, config);
       const data = response.data;
       console.log("data editar carona> ", data);
       setShowEditModal(false);
@@ -110,7 +110,7 @@ const Perfil = () => {
 
   const handleDeletarCarona = async () => {
     try {
-      const response = await axios.delete(`https://nice-puce-lovebird-cape.cyclic.app/caronas/deletar/${caronaEditada.id}`, config);
+      const response = await axios.delete(`http://localhost:3000/caronas/deletar/${caronaEditada.id}`, config);
       const data = response.data;
       console.log("data deletar carona> ", data);
       setShowDeleteCaronaModal(false);
@@ -133,7 +133,7 @@ const Perfil = () => {
 
   const fetchUsuario = async () => {
     try {
-      const response = await axios.get("https://nice-puce-lovebird-cape.cyclic.app/usuarios/perfil", config);
+      const response = await axios.get("http://localhost:3000/usuarios/perfil", config);
       const data = await response.data;
       setUsuario(data.usuario);
     } catch (error) {
@@ -144,7 +144,7 @@ const Perfil = () => {
   const fetchCarona = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get("https://nice-puce-lovebird-cape.cyclic.app/usuarios/caronas", config);
+      const response = await axios.get("http://localhost:3000/usuarios/caronas", config);
       const data = await response.data;
       setCaronas(data);
     } catch (error) {
@@ -268,7 +268,24 @@ const Perfil = () => {
               onChange={(e) => setCaronaEditada({ ...caronaEditada, destino: e.target.value })}
               placeholder="Destino"
             />
-            {/* Adicione mais campos de input para as outras informações da carona */}
+            <input
+              type="text"
+              value={caronaEditada?.horario || ''}
+              onChange={(e) => setCaronaEditada({ ...caronaEditada, horario: e.target.value })}
+              placeholder="Horário"
+            />
+            <input 
+              type="text"
+              value={caronaEditada?.vagas || ''}
+              onChange={(e) => setCaronaEditada({ ...caronaEditada, vagas: e.target.value })}
+              placeholder="Vagas"
+            />
+            <input
+              type="text"
+              value={caronaEditada?.descricao || ''}
+              onChange={(e) => setCaronaEditada({ ...caronaEditada, descricao: e.target.value })}
+              placeholder="Descrição"
+            />
             <div className="modal-buttons">
               <button className="cancel-button" onClick={handleCancelarEdicaoCarona}>Cancelar</button>
               <button className="save-button" onClick={handleSalvarEdicaoCarona}>Salvar</button>

@@ -4,11 +4,11 @@ import axios from 'axios';
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem('token') || null);
+  const [token, setToken] = useState(null);
 
   const login = async (inputs) => {
     try {
-      const response = await axios.post('https://nice-puce-lovebird-cape.cyclic.app/usuarios/login', inputs);
+      const response = await axios.post('http://localhost:3000/usuarios/login', inputs);
       const token = response.data.token;
       setToken(token);
       localStorage.setItem('token', token);
@@ -27,7 +27,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    axios.defaults.headers.common['Authorization'] = token ? `Bearer ${token}` : '';
   }, [token]);
 
   return (

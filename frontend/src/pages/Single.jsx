@@ -21,7 +21,7 @@ const Single = () => {
 
   const buscarMotorista = async (idUsuario) => {
     try {
-      const response = await axios.get(`https://nice-puce-lovebird-cape.cyclic.app/usuarios/perfil/${idUsuario}`, config);
+      const response = await axios.get(`http://localhost:3000/usuarios/perfil/${idUsuario}`, config);
       const { usuario } = response.data;
       setMotoristaSelecionado(usuario);
     } catch (error) {
@@ -32,7 +32,7 @@ const Single = () => {
   useEffect(() => {
     const fetchCarona = async () => {
       try {
-        const response = await fetch(`https://nice-puce-lovebird-cape.cyclic.app/caronas/vizualizar/${id}`)
+        const response = await fetch(`http://localhost:3000/caronas/vizualizar/${id}`)
         const data = await response.json();
         setCaronasComNome(data.caronasComNome);
         console.log("CARONA ESPECIFICADA", data.caronasComNome)
@@ -57,7 +57,7 @@ const Single = () => {
     try {
       const response = await axios.post(
 
-        `https://nice-puce-lovebird-cape.cyclic.app/caronas/solicitar/${id}`,
+        `http://localhost:3000/caronas/solicitar/${id}`,
         solicitacao, config
       );
       console.log(response.data);
@@ -78,7 +78,6 @@ const Single = () => {
   if (!caronasComNome) {
     return <div>Loading...</div>; // Ou qualquer indicador de carregamento desejado
   }
-
   return (
     <div className="create">
       <div className="card">
@@ -96,6 +95,8 @@ const Single = () => {
             {caronasComNome.descricao}
           </p>
         </div>
+        <p>Carro: {caronasComNome.carro}</p>
+        <p>Cor do Carro: {caronasComNome.cor}</p>
         <div className="button-wrapper">
           <a href={`https://wa.me/${caronasComNome.telefone}?text=Ola,%20eu%20vim%20atraves%20do%20UniBuddy%20e%20quero%20uma%20carona`} target="_blank" rel="noopener noreferrer" className="button-whatsapp">
             <img className="whatsapp" src={whats} alt="whatsapp" />
