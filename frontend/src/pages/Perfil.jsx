@@ -269,16 +269,19 @@ const Perfil = () => {
               placeholder="Destino"
             />
             <input
-              type="text"
+              type="time"
               value={caronaEditada?.horario || ''}
               onChange={(e) => setCaronaEditada({ ...caronaEditada, horario: e.target.value })}
               placeholder="Horário"
+              format = "HH:mm"
             />
             <input 
-              type="text"
+              type="number"
               value={caronaEditada?.vagas || ''}
               onChange={(e) => setCaronaEditada({ ...caronaEditada, vagas: e.target.value })}
               placeholder="Vagas"
+              max = "4"
+              min = "1"
             />
             <input
               type="text"
@@ -286,6 +289,8 @@ const Perfil = () => {
               onChange={(e) => setCaronaEditada({ ...caronaEditada, descricao: e.target.value })}
               placeholder="Descrição"
             />
+            {/* Adicione mais campos de input para as outras informações da carona */}
+
             <div className="modal-buttons">
               <button className="cancel-button" onClick={handleCancelarEdicaoCarona}>Cancelar</button>
               <button className="save-button" onClick={handleSalvarEdicaoCarona}>Salvar</button>
