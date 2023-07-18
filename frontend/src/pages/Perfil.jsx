@@ -290,6 +290,7 @@ const Perfil = () => {
               placeholder="Descrição"
             />
             {/* Adicione mais campos de input para as outras informações da carona */}
+
             <div className="modal-buttons">
               <button className="cancel-button" onClick={handleCancelarEdicaoCarona}>Cancelar</button>
               <button className="save-button" onClick={handleSalvarEdicaoCarona}>Salvar</button>

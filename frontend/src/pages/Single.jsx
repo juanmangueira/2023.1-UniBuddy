@@ -21,7 +21,6 @@ const Single = () => {
   };
 
 
-
     const buscarMotorista = async (idUsuario) => {
         try {
           const response = await axios.get(`https://nice-puce-lovebird-cape.cyclic.app/usuarios/perfil/${idUsuario}`, config);
@@ -100,8 +99,10 @@ const Single = () => {
     <div className="create">
       <div className="card">
         <h1 className="Titulo">Carona Selecionada</h1>
+
         <button className="profile-button-single" onClick={() => buscarMotorista(caronasComNome.id_usuario)} >Perfil do Motorista</button>
         <button className="profile-button-single" onClick={() => buscarCaronasMotorista(caronasComNome.id_usuario)}>Caronas do Motorista</button>
+
         <p>Nome do Motorista: {caronasComNome.nome}</p>
         <p>Origem da Carona: {caronasComNome.origem}</p>
         <p>Destino da Carona: {caronasComNome.destino}</p>
@@ -158,6 +159,7 @@ const Single = () => {
           <button onClick={() => setCaronaMotorista(null)}>Fechar</button>
         </div>
       )}
+
     </div>
   );
 };
